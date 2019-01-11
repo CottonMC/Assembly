@@ -1,0 +1,8 @@
+{
+  "block.assembly.generator": "Awful Bad Hell Generator",
+  "msg.assembly.outputting": "Currently outputting:",
+  "energy.cotton.low_voltage": "Low voltage",
+  "energy.cotton.medium_voltage": "Medium voltage",
+  "energy.cotton.high_voltage": "High voltage",
+  "energy.cotton.ultra_high_voltage": "Ultra-high voltage"
+}

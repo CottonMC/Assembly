@@ -1,0 +1,11 @@
+{
+  "id": "assembly",
+  "name": "Assembly",
+  "version": "1.0.0",
+  "side": "universal",
+  "initializers": [
+      "io.github.cottonmc.assembly.Assembly",
+      "io.github.cottonmc.assembly.AssemblyClient",
+      "io.github.cottonmc.assembly.util.AssemblyNetworking"
+  ]
+}
