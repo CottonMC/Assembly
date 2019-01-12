@@ -1,12 +1,17 @@
 package io.github.cottonmc.assembly.item;
 
 import io.github.cottonmc.assembly.Assembly;
+import io.github.cottonmc.cotton.registry.CommonItems;
+import io.github.cottonmc.resources.CottonResources;
 import net.minecraft.item.Item;
 import net.minecraft.util.registry.Registry;
 
 public class ModItems {
 
 	// public static final Item PCB = register(new ItemBase("pcb", ItemBase.DEFAULT_SETTINGS));
+	public static final Item COPPER_INGOT = CommonItems.getItem("copper_ingot");
+	public static final Item COPPER_DUST = CommonItems.getItem("copper_dust");
+	public static final Item IRON_DUST = CommonItems.getItem("iron_dust");
 
 	public static void init() {
 

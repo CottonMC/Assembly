@@ -17,7 +17,6 @@ public class GeneratorContainer extends Container {
 		this.be = (GeneratorBlockEntity) player.getEntityWorld().getBlockEntity(pos);
 	}
 
-
 	@Override
 	public boolean canUse(PlayerEntity player) {
 		return true;

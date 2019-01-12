@@ -17,8 +17,10 @@ import java.util.function.Supplier;
 
 public class ModBlocks {
 	public static final Block GENERATOR = register(new GeneratorBlock(), Assembly.asmGroup);
+	public static final Block CRUSHER = register(new CrusherBlock(), Assembly.asmGroup);
 
 	public static final BlockEntityType<GeneratorBlockEntity> GENERATOR_BE = register("generator", GeneratorBlockEntity::new);
+	public static final BlockEntityType<CrusherBlockEntity> CRUSHER_BE = register("crusher", CrusherBlockEntity::new);
 
 	public static void init() {
 
