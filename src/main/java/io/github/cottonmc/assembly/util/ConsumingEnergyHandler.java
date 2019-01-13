@@ -12,4 +12,9 @@ public class ConsumingEnergyHandler extends EnergyHandler {
 	public boolean canExtractEnergy() {
 		return false;
 	}
+
+	@Override
+	public int getCurrentEnergy() {
+		return super.getCurrentEnergy();
+	}
 }

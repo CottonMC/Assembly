@@ -1,11 +1,14 @@
 package io.github.cottonmc.assembly.block.entity;
 
+import io.github.cottonmc.assembly.block.CrusherBlock;
 import io.github.cottonmc.assembly.block.ModBlocks;
 import io.github.cottonmc.assembly.item.ModItems;
 import io.github.cottonmc.assembly.util.ConsumingEnergyHandler;
 import io.github.cottonmc.assembly.util.component.SimpleItemComponent;
 import io.github.cottonmc.energy.api.*;
+import io.github.cottonmc.energy.impl.EnergyHandler;
 import io.github.cottonmc.energy.impl.EnergySerializer;
+import net.minecraft.block.BlockState;
 import net.minecraft.container.Container;
 import net.minecraft.container.LockContainer;
 import net.minecraft.container.LockableContainer;
@@ -20,7 +23,7 @@ import net.minecraft.util.Tickable;
 public class CrusherBlockEntity extends MachineBlockEntity implements Tickable, EnergyComponentHolder, Inventory, LockableContainer {
 
 	private EnergyType exportType = DefaultEnergyTypes.LOW_VOLTAGE;
-	private ConsumingEnergyHandler energy = new ConsumingEnergyHandler(32);
+	private EnergyHandler energy = new EnergyHandler(32);
 	private SimpleItemComponent inv = new SimpleItemComponent(2);
 	private LockContainer lock;
 
@@ -28,6 +31,8 @@ public class CrusherBlockEntity extends MachineBlockEntity implements Tickable, 
 	private int maxProcessTicks = 200;
 	private int consumptionTicks; // not gonna use till UM gets its numbers stabilized
 	private int maxConsumptionTicks = 5; // not gonna use till UM gets its numbers stabilized
+
+	private BlockState lastState;
 
 	//Transient data to throttle sync down here (if needed)
 
@@ -43,8 +48,8 @@ public class CrusherBlockEntity extends MachineBlockEntity implements Tickable, 
 		if (inv.get(0).getItem() == ModItems.COPPER_INGOT) {
 			if (processTicks < maxProcessTicks) {
 				int extr = energy.extractEnergy(1, ActionType.SIMULATE);
-				if (extr == 0) {
-					energy.extractEnergy(0, ActionType.PERFORM);
+				if (extr != 0) {
+					energy.extractEnergy(1, ActionType.PERFORM);
 					processTicks++;
 				}
 			} else {
@@ -52,6 +57,11 @@ public class CrusherBlockEntity extends MachineBlockEntity implements Tickable, 
 				inv.insert(1, new ItemStack(ModItems.COPPER_DUST, 1));
 				processTicks = 0;
 			}
+		}
+		BlockState state = world.getBlockState(pos).with(CrusherBlock.ACTIVE, processTicks > 0);
+		if (state != lastState) {
+			world.setBlockState(pos, state);
+			lastState = state;
 		}
 	}
 

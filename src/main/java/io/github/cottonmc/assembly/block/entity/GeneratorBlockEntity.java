@@ -34,7 +34,7 @@ public class GeneratorBlockEntity extends MachineBlockEntity implements Tickable
 				EnergyComponentHolder comp = (EnergyComponentHolder) be;
 				if (comp.canConnectTo(exportType) && comp.getEnergyComponent(exportType).canInsertEnergy()) {
 					EnergyComponent energy = comp.getEnergyComponent(exportType);
-					energy.insertEnergy(exportType.getMaximumTransferSize(), ActionType.SIMULATE);
+					energy.insertEnergy(exportType.getMaximumTransferSize(), ActionType.PERFORM);
 					runEvent();
 					be.markDirty();
 				}
