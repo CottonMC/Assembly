@@ -8,10 +8,9 @@ import net.minecraft.util.registry.Registry;
 
 public class ModItems {
 
-	// public static final Item PCB = register(new ItemBase("pcb", ItemBase.DEFAULT_SETTINGS));
 	public static final Item COPPER_INGOT = CommonItems.register("copper_ingot", new ItemBase("copper_ingot", ItemBase.COTTON_SETTINGS));
 	public static final Item COPPER_DUST = CommonItems.register("copper_dust", new ItemBase("copper_dust", ItemBase.COTTON_SETTINGS));
-//	public static final Item IRON_DUST = CommonItems.getItem("iron_dust");
+	public static final Item IRON_DUST = CommonItems.register("iron_dust", new ItemBase("iron_dust", ItemBase.COTTON_SETTINGS));
 
 	public static void init() {
 
