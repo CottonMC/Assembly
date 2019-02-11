@@ -1,19 +1,16 @@
 package io.github.cottonmc.assembly.block;
 
+import io.github.cottonmc.assembly.block.entity.CrusherBlockEntity;
 import net.fabricmc.fabric.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.client.render.block.BlockRenderLayer;
-import net.minecraft.entity.VerticalEntityPosition;
+import net.minecraft.inventory.SidedInventory;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import io.github.prospector.silk.block.SilkBlockWithEntity;
-import net.minecraft.world.ViewableWorld;
-import net.minecraft.world.World;
+import net.minecraft.world.IWorld;
 
-public class MachineBase extends SilkBlockWithEntity implements NamedBlock {
+public class MachineBase extends SilkBlockWithEntity implements NamedBlock, InventoryProvider {
 	public String name;
 
 	public static final Settings DEFAULT_SETTINGS = FabricBlockSettings.create(Material.PART).setStrength(0.5f, 8f).build();
@@ -39,7 +36,10 @@ public class MachineBase extends SilkBlockWithEntity implements NamedBlock {
 	}
 
 	@Override
-	public BlockRenderLayer getRenderLayer() {
-		return BlockRenderLayer.SOLID;
+	public SidedInventory getInventory(BlockState state, IWorld world, BlockPos pos) {
+		BlockEntity be = world.getBlockEntity(pos);
+		if (be!=null && be instanceof CrusherBlockEntity) {
+			return ((CrusherBlockEntity)be).getInventory();
+		}
 	}
 }

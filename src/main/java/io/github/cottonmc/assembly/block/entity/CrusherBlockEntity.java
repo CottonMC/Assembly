@@ -3,15 +3,14 @@ package io.github.cottonmc.assembly.block.entity;
 import io.github.cottonmc.assembly.block.CrusherBlock;
 import io.github.cottonmc.assembly.block.ModBlocks;
 import io.github.cottonmc.assembly.item.ModItems;
-import io.github.cottonmc.assembly.util.ConsumingEnergyHandler;
 import io.github.cottonmc.assembly.util.component.SimpleItemComponent;
 import io.github.cottonmc.energy.api.*;
 import io.github.cottonmc.energy.impl.EnergyHandler;
 import io.github.cottonmc.energy.impl.EnergySerializer;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.InventoryProvider;
 import net.minecraft.container.Container;
 import net.minecraft.container.LockContainer;
-import net.minecraft.container.LockableContainer;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
@@ -20,7 +19,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.text.TextComponent;
 import net.minecraft.util.Tickable;
 
-public class CrusherBlockEntity extends MachineBlockEntity implements Tickable, EnergyComponentHolder, Inventory, LockableContainer {
+public class CrusherBlockEntity extends MachineBlockEntity implements Tickable, EnergyComponentHolder, InventoryProvider {
 
 	private EnergyType exportType = DefaultEnergyTypes.LOW_VOLTAGE;
 	private EnergyHandler energy = new EnergyHandler(32);

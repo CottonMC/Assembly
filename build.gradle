@@ -1,20 +1,22 @@
 buildscript {
 	repositories {
+		mavenCentral()
 		jcenter()
 		maven {
 			name = 'Fabric'
 			url = 'http://maven.modmuss50.me/'
 		}
+		maven {
+			url "https://plugins.gradle.org/m2/"
+		}
 	}
 	dependencies {
-		classpath "net.fabricmc:fabric-loom:0.1.0-SNAPSHOT"
+		classpath "net.fabricmc:fabric-loom:0.2.0-SNAPSHOT"
 	}
 }
 
 plugins {
 	id 'java'
-	id 'eclipse'
-	id 'idea'
 }
 
 apply plugin: net.fabricmc.loom.LoomGradlePlugin
@@ -23,10 +25,9 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 archivesBaseName = "assembly"
-version = "18w50a-1.0"
+version = "1.0.0+19w03a"
 
 minecraft {
-	refmapName = 'mixins.gluon.refmap.json'
 }
 
 repositories {
@@ -34,13 +35,14 @@ repositories {
 }
 
 dependencies {
-	minecraft "com.mojang:minecraft:18w50a"
-	mappings "net.fabricmc:yarn:18w50a.68"
-	modCompile "net.fabricmc:fabric-loader:0.3.0.74"
+	minecraft "com.mojang:minecraft:19w03a"
+	mappings "net.fabricmc:yarn:19w03a.7"
+	modCompile "net.fabricmc:fabric-loader:0.3.0.75"
 	modCompile "net.fabricmc:fabric:0.1.4.69"
 	implementation 'org.jetbrains:annotations:15.0'
-	modCompile "io.github.cottonmc:cotton:0.0.2+18w50a-SNAPSHOT"
-	modCompile "io.github.cottonmc:cotton-energy:1.0.0+18w50a-SNAPSHOT"
-	modCompile "io.github.cottonmc:cotton-resources:0.0.1+18w50a-SNAPSHOT"
-	modCompile "io.github.prospector.silk:SilkAPI:1.0.0-26"
+	modCompile "io.github.cottonmc:cotton:0.0.2+19w03a-SNAPSHOT"
+	modCompile "io.github.cottonmc:cotton-resources:0.0.1+19w03a-SNAPSHOT"
+	modCompile "io.github.cottonmc:cotton-energy:1.0.0+19w03a-SNAPSHOT"
+	modCompile "io.github.cottonmc:cotton-ecs:1.0.0+19w03a-SNAPSHOT"
+	modCompile "io.github.prospector.silk:SilkAPI:1.2.0-34"
 }
